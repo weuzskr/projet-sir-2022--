@@ -13,8 +13,13 @@ pipeline {
 
         stage('Build') {
           steps {
-            bat 'mvn clean'
+            bat 'mvn clean.org.jacoco-maven-plugin:prepare-agent install'
                 }
                         }
+          stage('SonarQube Analysis'){
+          steps{
+          bat 'mvn sosnar:sonar'
+          }
+          }
             }
         }
